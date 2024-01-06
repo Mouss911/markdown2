@@ -1,0 +1,17 @@
+.gauche{
+    height: 450px;
+    border-radius: 10px;
+    background: skyblue;
+  }
+  
+  .droite{
+    height: 250px;
+    border-radius: 10px;
+  }
+  .row{
+    border-top: 2px solid white;
+  }
+
+  button{
+    opacity: 0.5;
+  }
