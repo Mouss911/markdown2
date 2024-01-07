@@ -12,8 +12,15 @@ class EditeurMarkdown extends React.Component {
 
   // Fonction pour telechargement
   handleDownload = () => {
-    try {
-      const blob = new Blob([this.state.texteMarkdown], { type: 'text/plain' });
+    const { texteMarkdown } = this.state;
+
+     if (texteMarkdown.trim() === '') {
+      alert("Veuillez entrer du texte avant de télécharger.");
+      return;
+     }
+
+    try { 
+      const blob = new Blob([texteMarkdown], { type: 'text/plain' });
       const url = URL.createObjectURL(blob);
 
       const lien = document.createElement('a');
@@ -29,6 +36,8 @@ class EditeurMarkdown extends React.Component {
   };
 
   render() {
+    const { texteMarkdown } = this.state;
+
     return (
       <div className='container-fluid bg-dark py-4'>
         <p className='text-white text-center fw-bold'>HEADER</p>
@@ -43,7 +52,7 @@ class EditeurMarkdown extends React.Component {
               className="border border-success w-100 text-black fw-bold gauche"
               type="text"
               placeholder="Saisir un texte..."
-              value={this.state.texteMarkdown}
+              value={texteMarkdown}
               onChange={this.handleInputChange}
             />
           </div>
@@ -51,7 +60,7 @@ class EditeurMarkdown extends React.Component {
           {/* Champ de lecture */}
           <div className='col-md-4 col-sm-12'>
             <textarea
-              value={this.state.texteMarkdown}
+              value={texteMarkdown}
               className='border border-warning w-100 text-black fw-bold droite'
               readOnly
             />
